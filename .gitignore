@@ -205,3 +205,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Password Manager – sensitive files
+passwords.json
+secret.key
+
