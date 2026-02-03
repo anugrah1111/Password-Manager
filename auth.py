@@ -41,9 +41,9 @@ class AuthService:
             confirm = getpass.getpass("Confirm master password: ")
 
             if password != confirm:
-                print("❌ Passwords do not match. Try again.")
+                print(" Passwords do not match. Try again.")
             elif len(password) < 6:
-                print("❌ Password must be at least 6 characters.")
+                print(" Password must be at least 6 characters.")
             else:
                 break
 
@@ -52,7 +52,7 @@ class AuthService:
         with open(self.hash_file, "w") as file:
             file.write(hashed)
 
-        print("✅ Master password set successfully\n")
+        print(" Master password set successfully\n")
 
     def authenticate(self) -> bool:
         """
@@ -63,10 +63,10 @@ class AuthService:
         for attempt in range(3):
             password = getpass.getpass("Enter master password: ")
             if self._hash_password(password) == stored_hash:
-                print("✅ Authentication successful\n")
+                print(" Authentication successful\n")
                 return True
             else:
-                print("❌ Incorrect password")
+                print("Incorrect password")
 
-        print("🚫 Too many failed attempts")
+        print(" Too many failed attempts")
         return False
