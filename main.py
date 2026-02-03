@@ -6,15 +6,25 @@ Handles user interaction through command-line interface.
 """
 
 from manager import PasswordManager
+from auth import AuthService
+
 
 
 def main():
     """
     Main function:
-    - Displays menu
-    - Takes user input
-    - Calls PasswordManager methods
+    - Authenticates user with master password
+    - Starts password manager on success
     """
+    auth = AuthService()
+
+    # First-time setup
+    if not auth.is_master_password_set():
+        auth.setup_master_password()
+
+    # Authentication check
+    if not auth.authenticate():
+        return  # Exit app if authentication fails
     manager = PasswordManager()
 
     while True:
